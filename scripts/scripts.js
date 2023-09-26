@@ -42,6 +42,25 @@ async function loadFonts() {
   }
 }
 
+function decorateCTAs(main) {
+  [...main.querySelectorAll('a')]
+    .filter((anchor) => anchor.textContent.toLowerCase().includes('click me'))
+    .forEach((cta) => {
+      cta.href = '#';
+      cta.dataset.click = 0;
+
+      const clickLabel = document.createElement('p');
+      cta.parentElement.append(clickLabel);
+
+      cta.addEventListener('click', (e) => {
+        cta.dataset.click = parseInt(cta.dataset.click, 10) + 1;
+        clickLabel.innerText = `Clicked ${cta.dataset.click} times!`;
+
+        e.preventDefault();
+      });
+    });
+}
+
 /**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
@@ -49,6 +68,7 @@ async function loadFonts() {
 function buildAutoBlocks(main) {
   try {
     buildHeroBlock(main);
+    decorateCTAs(main);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
