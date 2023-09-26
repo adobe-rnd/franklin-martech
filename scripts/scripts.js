@@ -134,8 +134,8 @@ function initTagManager() {
         window.dataLayer.push({
           event: 'cta_click',
         });
-      })
-    })
+      });
+    });
 }
 
 /**
