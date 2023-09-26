@@ -46,6 +46,7 @@ function decorateCTAs(main) {
   [...main.querySelectorAll('a')]
     .filter((anchor) => anchor.textContent.toLowerCase().includes('click me'))
     .forEach((cta) => {
+      cta.classList.add('cta');
       cta.href = '#';
       cta.dataset.click = 0;
 
