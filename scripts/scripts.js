@@ -122,6 +122,23 @@ function initPartytown() {
   import('./partytown/partytown.js');
 }
 
+function initTagManager() {
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    'gtm.start': new Date().getTime(),
+    event: 'gtm.js',
+  });
+
+  document.querySelectorAll('a.cta')
+    .forEach((cta) => {
+      cta.addEventListener('click', () => {
+        window.dataLayer.push({
+          event: 'cta_click',
+        });
+      });
+    });
+}
+
 /**
  * Loads everything that doesn't need to be delayed.
  * @param {Element} doc The container element
@@ -149,6 +166,7 @@ async function loadLazy(doc) {
   });
 
   initPartytown();
+  initTagManager();
 }
 
 /**
