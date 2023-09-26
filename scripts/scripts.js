@@ -10,7 +10,7 @@ import {
   decorateTemplateAndTheme,
   waitForLCP,
   loadBlocks,
-  loadCSS, loadScript,
+  loadCSS,
 } from './lib-franklin.js';
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
@@ -150,8 +150,6 @@ async function loadPage() {
   await loadEager(document);
   await loadLazy(document);
   loadDelayed();
-
-  loadScript('https://main--acme-tracker--ekremney.hlx.live/scripts/tracker.js');
 }
 
 loadPage();
