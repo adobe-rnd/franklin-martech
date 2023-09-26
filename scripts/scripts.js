@@ -48,6 +48,7 @@ function decorateCTAs(main) {
     .forEach((cta) => {
       cta.href = '#';
       cta.dataset.click = 0;
+      cta.classList.add('cta');
 
       const clickLabel = document.createElement('p');
       cta.parentElement.append(clickLabel);
@@ -120,6 +121,23 @@ function initPartytown() {
   import('./partytown/partytown.js');
 }
 
+function initTagManager() {
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    'gtm.start': new Date().getTime(),
+    event: 'gtm.js',
+  });
+
+  document.querySelectorAll('a.cta')
+    .forEach((cta) => {
+      cta.addEventListener('click', () => {
+        window.dataLayer.push({
+          event: 'cta_clicked',
+        });
+      })
+    })
+}
+
 /**
  * Loads everything that doesn't need to be delayed.
  * @param {Element} doc The container element
@@ -147,6 +165,7 @@ async function loadLazy(doc) {
   });
 
   initPartytown();
+  initTagManager();
 }
 
 /**
