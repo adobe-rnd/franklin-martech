@@ -132,7 +132,7 @@ function initTagManager() {
     .forEach((cta) => {
       cta.addEventListener('click', () => {
         window.dataLayer.push({
-          event: 'cta_clicked',
+          event: 'cta_click',
         });
       })
     })
